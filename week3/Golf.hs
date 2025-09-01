@@ -6,7 +6,7 @@ run = do
     print $ skips "hello"
     print $ skips [3::Int, 2, 1]
     print $ localMaxima [3, 2, 1, 4, 2]
-    putStrLn $ histogram [8, 2, 1, 4, 2, 4]
+    putStrLn $ histogram [8, 2, 1, 4, 2, 4, 9, 8, 4]
 
 
 -- exercise 1
@@ -20,9 +20,9 @@ skips input@(_:xs) = input : (skips xs)
 -- exercise 2
 
 localMaxima :: [Integer] -> [Integer]
-localMaxima (l:rest@(current:r:_)) =
-    if current > l && current > r then current : next
-    else next
+localMaxima (l:rest@(current:r:_))
+    | current > l && current > r = current : next
+    | otherwise = next
     where next = localMaxima rest
 localMaxima _ = []
 
